@@ -4,8 +4,16 @@ using Data.LiveryRegistration;
 
 namespace TrafficPricing.Services
 {
+    /// <inheritdoc cref="TollCalculator"/>
     public class TollPassengersCalculator : TollCalculator
     {
+        /// <summary>
+        /// Calculates toll according to vehicle's type and count of passengers.
+        /// </summary>
+        /// <param name="vehicle">Vehicle.</param>
+        /// <returns>Price for vehicle service.</returns>
+        /// <exception cref="ArgumentException">Throws, when the type of vehicle is unknown.</exception>
+        /// <exception cref="ArgumentNullException">Throws, when the vehicle is null.</exception>
         public override decimal CalculateToll(object vehicle) =>
             vehicle switch
             {

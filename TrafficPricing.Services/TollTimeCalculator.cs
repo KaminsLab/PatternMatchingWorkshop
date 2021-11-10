@@ -2,6 +2,7 @@
 
 namespace TrafficPricing.Services
 {
+    /// <inheritdoc cref="TollPassengersCalculator"/>
     public class TollTimeCalculator : TollPassengersCalculator
     {
         private enum TimeBand
@@ -12,6 +13,15 @@ namespace TrafficPricing.Services
             Overnight
         }
 
+        /// <summary>
+        /// Calculates toll according to vehicle's type, count of passengers and time of toll.
+        /// </summary>
+        /// <param name="vehicle">Vehicle.</param>
+        /// <param name="timeOfToll">Time of toll.</param>
+        /// <param name="inbound">Type of traffic - inbound or outbound.</param>
+        /// <returns>Price for vehicle service.</returns>
+        /// <exception cref="ArgumentException">Throws, when the type of vehicle is unknown.</exception>
+        /// <exception cref="ArgumentNullException">Throws, when the vehicle is null.</exception>
         public decimal CalculateToll(object vehicle, DateTime timeOfToll, bool inbound)
             => this.CalculateToll(vehicle) * PeakTimePremiumFull(timeOfToll, inbound);
 
